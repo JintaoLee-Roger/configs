@@ -339,6 +339,21 @@ function mkdir {
     }
 }
 
+
+############# sudo ###########
+function sudo {
+    param(
+        [Parameter(Mandatory=$true, ValueFromRemainingArguments)]
+        [string[]]
+        $Command
+    )
+
+    $commandString = $Command -join ' '
+    $encodedCommand = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($commandString))
+    Start-Process powershell.exe -Verb RunAs -ArgumentList "-NoProfile -EncodedCommand $encodedCommand"
+}
+
+
 ########### vim #############
 Set-Alias vim nvim
 Set-Alias vi nvim

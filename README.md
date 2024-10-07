@@ -71,7 +71,7 @@ New-Item authorized_keys
 `Restart-Service -Name sshd`
 
 6. modify the config file of sshd - `C:\ProgramData\ssh\sshd_config`
-```toml
+```yaml
 # Make sure the following 3 items are not commented
 PubkeyAuthentication yes
 AuthorizedKeysFile	.ssh/authorized_keys
